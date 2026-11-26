@@ -1,0 +1,20 @@
+{
+  "snapshot_file": "data/indian_market_pit.csv",
+  "sha256": "49777aa185b540b3c917215c01016522af36f46e9f973f7e1bf04eea7b082b5f",
+  "rows": 4680,
+  "start_date": "2007-09-24",
+  "end_date": "2026-11-23",
+  "generated_at": "2026-11-26T07:16:23.435935",
+  "release_lags": {
+    "FII_Equity": 1,
+    "DII_Equity": 1,
+    "SIP_Monthly": 5,
+    "Gilt10Y": 1,
+    "AAA10Y": 1,
+    "PctAbove50DMA": 1,
+    "Advances": 1,
+    "Declines": 1,
+    "NewHighs": 1,
+    "NewLows": 1
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "proper_scoring_rules_oos": {
+    "Ensemble_v3.2": {
+      "RPS": 0.2004,
+      "Brier": 0.9653,
+      "LogLoss": 2.2255,
+      "RPS_Skill_vs_Climatology": -0.2823
+    },
+    "Bayesian_HMM": {
+      "RPS": 0.2448,
+      "Brier": 1.0654,
+      "LogLoss": 3.2521,
+      "RPS_Skill_vs_Climatology": -0.5665
+    },
+    "Bayesian_RSVAR": {
+      "RPS": 0.2643,
+      "Brier": 1.2958,
+      "LogLoss": 4.3063,
+      "RPS_Skill_vs_Climatology": -0.6913
+    },
+    "Particle_Filter": {
+      "RPS": 0.2168,
+      "Brier": 1.0116,
+      "LogLoss": 2.972,
+      "RPS_Skill_vs_Climatology": -0.3878
+    },
+    "Climatology_Baseline": {
+      "RPS": 0.1563,
+      "Brier": 0.7175,
+      "LogLoss": 1.4296,
+      "RPS_Skill_vs_Climatology": 0.0
+    },
+    "Persistence_Baseline": {
+      "RPS": 0.1096,
+      "Brier": 0.5855,
+      "LogLoss": 8.0843,
+      "RPS_Skill_vs_Climatology": 0.2984
+    }
+  },
+  "full_sample_performance": {
+    "Regime_Overlay": {
+      "CAGR": 0.1123,
+      "Ann_Vol": 0.1512,
+      "Sharpe": 0.292,
+      "Max_Drawdown": -0.2801,
+      "Information_Ratio": -0.467
+    },
+    "Benchmark_75_25": {
+      "CAGR": 0.1275,
+      "Ann_Vol": 0.1894,
+      "Sharpe": 0.339,
+      "Max_Drawdown": -0.3844,
+      "Information_Ratio": 0.0
+    }
+  },
+  "out_of_sample_performance": {
+    "Regime_Overlay": {
+      "CAGR": 0.0997,
+      "Ann_Vol": 0.1339,
+      "Sharpe": 0.226,
+      "Max_Drawdown": -0.2801,
+      "Information_Ratio": -0.298
+    },
+    "Benchmark_75_25": {
+      "CAGR": 0.1068,
+      "Ann_Vol": 0.1681,
+      "Sharpe": 0.25,
+      "Max_Drawdown": -0.3844,
+      "Information_Ratio": 0.0
+    }
+  },
+  "overfitting_controls": {
+    "deflated_sharpe_prob": 0.5217,
+    "annualised_turnover": 4.79,
+    "total_tx_cost_bps_pa": 57.5
+  },
+  "crisis_episode_attribution": {
+    "2008_GFC": {
+      "strat_return": -0.0005,
+      "bench_return": -0.0174,
+      "strat_max_dd": -0.1509,
+      "bench_max_dd": -0.2197,
+      "avg_equity_weight": 0.742
+    },
+    "2013_Taper_Tantrum": {
+      "strat_return": -0.0415,
+      "bench_return": -0.0329,
+      "strat_max_dd": -0.1163,
+      "bench_max_dd": -0.1458,
+      "avg_equity_weight": 0.801
+    },
+    "2018_ILFS_Credit_Shock": {
+      "strat_return": -0.0361,
+      "bench_return": -0.0488,
+      "strat_max_dd": -0.1125,
+      "bench_max_dd": -0.1455,
+      "avg_equity_weight": 0.802
+    },
+    "2020_COVID_Crash_Recovery": {
+      "strat_return": 0.1938,
+      "bench_return": 0.1688,
+      "strat_max_dd": -0.2711,
+      "bench_max_dd": -0.3763,
+      "avg_equity_weight": 0.848
+    },
+    "2024_Election_Shock": {
+      "strat_return": 0.0688,
+      "bench_return": 0.0807,
+      "strat_max_dd": -0.0406,
+      "bench_max_dd": -0.0593,
+      "avg_equity_weight": 0.842
+    }
+  },
+  "regime_conditioned_mc_1y": {
+    "horizon_days": 252,
+    "n_sims": 10000,
+    "median_1y_return": 0.1712,
+    "p05_1y_return": -0.0776,
+    "p95_1y_return": 0.4872,
+    "cvar_95_1y": -0.1355,
+    "prob_negative_1y": 0.1338
+  },
+  "latest_regime_contract": {
+    "date": "2026-11-23",
+    "dominant_regime": "Risk-On",
+    "probabilities": {
+      "Risk-Off": 0.0134,
+      "Post-Shock": 0.0276,
+      "Transitional": 0.017,
+      "Late-Cycle": 0.3605,
+      "Risk-On": 0.5815
+    },
+    "conformal_set": "Risk-On",
+    "meta_confidence": 56.29,
+    "recommended_equity_weight": 0.9458,
+    "sebi_riskometer": "Moderate"
+  }
+}

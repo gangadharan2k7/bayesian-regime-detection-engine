@@ -1,0 +1,85 @@
+{
+  "conformal_calibration": {
+    "target_coverage": 0.9,
+    "oos_empirical_coverage": 1.0,
+    "oos_mean_set_size": 1.255,
+    "oos_singleton_rate": 0.7445,
+    "oos_abstain_rate": 0.0,
+    "prob_threshold": 0.3736
+  },
+  "meta_confidence_summary": {
+    "mean": 54.81,
+    "p10": 34.68,
+    "p90": 70.39
+  },
+  "top_global_shap_drivers": {
+    "vol_21d": 0.02429,
+    "vol_63d": 0.02395,
+    "vix_level": 0.01569,
+    "fii_flow_z_60d": 0.0144,
+    "credit_spread": 0.01155,
+    "adv_dec_ratio": 0.01094,
+    "usdinr_z_60d": 0.01051,
+    "pct_above_50dma": 0.00996,
+    "fii_eq_5d": 0.00903,
+    "breadth_change_21d": 0.00876,
+    "inr_change_21d": 0.00837,
+    "new_highs_lows": 0.0081
+  },
+  "top_per_regime_shap_drivers": {
+    "Risk-Off": {
+      "vix_z": 0.01011,
+      "adv_dec_ratio": 0.00704,
+      "pct_above_50dma": 0.00668,
+      "credit_spread_z": 0.00618,
+      "new_highs_lows": 0.00556
+    },
+    "Post-Shock": {
+      "vix_z": 0.00711,
+      "vol_21d": 0.00471,
+      "credit_spread_z": 0.00306,
+      "vix_level": 0.00288,
+      "credit_spread": 0.002
+    },
+    "Transitional": {
+      "vol_21d": 0.0267,
+      "adv_dec_ratio": 0.01615,
+      "fii_eq_5d": 0.01539,
+      "pct_above_50dma": 0.01431,
+      "vix_level": 0.01346
+    },
+    "Late-Cycle": {
+      "vol_63d": 0.05858,
+      "vol_21d": 0.05529,
+      "vix_level": 0.03783,
+      "fii_flow_z_60d": 0.02948,
+      "credit_spread": 0.02666
+    },
+    "Risk-On": {
+      "vol_63d": 0.05018,
+      "fii_flow_z_60d": 0.03571,
+      "vol_21d": 0.03027,
+      "usdinr_z_60d": 0.02519,
+      "breadth_change_21d": 0.02049
+    }
+  },
+  "feature_ablation_study": {
+    "Full_Model_OOS_Accuracy": 0.7086,
+    "No_India_VIX": {
+      "oos_accuracy": 0.7079,
+      "accuracy_drop": 0.0006
+    },
+    "No_FII_DII_Flows": {
+      "oos_accuracy": 0.7008,
+      "accuracy_drop": 0.0077
+    },
+    "No_Market_Breadth": {
+      "oos_accuracy": 0.7047,
+      "accuracy_drop": 0.0039
+    },
+    "No_TDA_SectorGCN": {
+      "oos_accuracy": 0.7092,
+      "accuracy_drop": -0.0006
+    }
+  }
+}
