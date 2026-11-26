@@ -1,0 +1,128 @@
+[
+  [
+    "EXECUTIVE SUMMARY & DIRECTION OVER PRICE THESIS",
+    [
+      [
+        "Role & Context",
+        "Project 1A: Bayesian Regime Detection Engine for Equity Direction Forecasting | Financial Data Analyst (Multi-Asset Solutions Desk, Mumbai AMC Simulation) | Author: Gangadharan R"
+      ],
+      [
+        "Directional Thesis",
+        "Point price prediction over mutual fund horizons fails due to low signal-to-noise, non-stationary macro regimes, and lack of regulatory auditability. With Indian MF AUM > Rs 70 lakh crore and monthly SIP inflows > Rs 26,000 crore, DIIs are the dominant structural marginal buyer alongside tactical FPI flows. Our engine outputs calibrated posterior probabilities across 5 Indian regimes (Risk-Off, Post-Shock, Transitional, Late-Cycle, Risk-On) with split-conformal & online ACI uncertainty sets."
+      ],
+      [
+        "Public GitHub Repo",
+        "https://github.com/R-GANGADHARAN/bayesian-regime-detection-engine (complete src/, app/, docs/, data/, artifacts/, README.md, editable .docx/.md)"
+      ]
+    ]
+  ],
+  [
+    "DELIVERABLE D3.1: POINT-IN-TIME (PIT) MARKET, MACRO & FLOW PIPELINE",
+    [
+      [
+        "Dataset & Lineage",
+        "4,670 NSE trading sessions (2008-01-01 to 2026-11-26) | PIT Snapshot SHA-256: 8aebe9129a9d15e006d50c70"
+      ],
+      [
+        "Anti-Leakage Controls",
+        "Macro releases lagged +1 trading day; AMFI monthly SIP flows lagged +5 trading days; execution weights lagged +1 trading day with a 1.5% no-trade band and 12 bps Indian STT/impact cost."
+      ],
+      [
+        "Feature Store (31 Features)",
+        "Multi-horizon returns (1d/5d/21d/63d), 50/200-DMA trend ratios, realised vol ratios, India VIX z-score & term structure, NSE Advance-Decline & % above 50-DMA breadth, FII/DII 5d/21d/60d flow z-scores, DII-absorption ratio, USD/INR momentum, 10Y G-Sec yield, AAA credit spread, TDA persistence norm & Sector GCN correlation proxy."
+      ]
+    ]
+  ],
+  [
+    "DELIVERABLE D3.2: SIX-MODEL BAYESIAN & FOUNDATION REGIME STACK",
+    [
+      [
+        "1. Bayesian 5-State Gaussian HMM",
+        "Informative sticky Dirichlet prior (diag=8.0, off=1.0) via PyMC NUTS (4 chains): Max R-hat = 1.0033, Min Bulk ESS = 1952.5, Divergences = 0. Geometric duration null test p-value = 0.0000 (justifying HSMM persistence)."
+      ],
+      [
+        "2. Multivariate Bayesian RS-VAR(1)",
+        "Hierarchical NumPyro XLA NUTS over Nifty return, India VIX, 50-DMA breadth, FII flows & USD/INR: Max R-hat = 1.0161, Min ESS = 340.7. Quantifies regime-conditional covariance spikes and 10-day FII-outflow impulse responses."
+      ],
+      [
+        "3. Particle Filter & BOCPD",
+        "Bootstrap SMC (N=1,000 particles): Mean ESS = 659.6, Mean Wasserstein-1 vs RS-VAR = 1.0896. Student-t BOCPD (hazard=1/125) + offline PELT detected 23 structural breaks."
+      ],
+      [
+        "4. MC-Dropout BNN",
+        "50 stochastic forward passes separating epistemic uncertainty (Mean Epistemic Std = 0.0466) from irreducible aleatoric entropy."
+      ],
+      [
+        "5 & 6. Foundation Model Heads",
+        "Head A: Chronos quantile-tokenized transformer encoder (64 bins, 32-d embedding). Head B: Lag-Llama multi-lag dilated causal temporal encoder (32-d embedding) for fat-tailed Indian equity dynamics."
+      ]
+    ]
+  ],
+  [
+    "DELIVERABLE D3.3: ENSEMBLING, CONFORMAL CALIBRATION & SHAP ATTRIBUTION",
+    [
+      [
+        "Out-of-Fold Simplex Stacking",
+        "Learned stacking weights across all 6 model families: {\"Bayesian_HMM\": 0.0, \"Bayesian_RSVAR\": 0.4727, \"Particle_Filter\": 0.0656, \"MC_Dropout_BNN\": 0.4617, \"Chronos_Foundation\": 0.0, \"LagLlama_Foundation\": 0.0}"
+      ],
+      [
+        "Conformal Coverage (Split + ACI)",
+        "90% Split-Conformal OOS Empirical Coverage = 100.00% (Mean Set Size = 1.301). Online Adaptive Conformal Inference (ACI, gamma=0.01) OOS coverage = 0.00%."
+      ],
+      [
+        "ECE & Murphy Brier Decomposition",
+        "Expected Calibration Error (ECE) = 0.4854 | Risk-On Brier = 0.1436 (Reliability = 0.0669, Resolution = 0.1713, Uncertainty = 0.2480)."
+      ],
+      [
+        "Proper Scoring Rules (OOS)",
+        "Ranked Probability Score (RPS) = 0.1989 | Multi-class Brier = 0.9577 | Log-Loss = 2.2001."
+      ],
+      [
+        "SHAP Drivers & Feature Ablation",
+        "Top Global SHAP Drivers: {'usdinr_z_60d': 0.02639, 'vix_level': 0.02092, 'vol_21d': 0.02083, 'inr_change_21d': 0.02075, 'vol_63d': 0.01426, 'adv_dec_ratio': 0.01279} | Ablation OOS Accuracy -> Full: 0.7299, No VIX: 0.724, No FII/DII: 0.7331, No Breadth: 0.7041."
+      ]
+    ]
+  ],
+  [
+    "DELIVERABLE D3.4: WALK-FORWARD BACKTEST, OVERFITTING CONTROLS & RISK-O-METER",
+    [
+      [
+        "OOS Regime Overlay (Net 12bps)",
+        "CAGR = 9.56% | Ann. Vol = 13.39% | Sharpe = 0.198 | Max Drawdown = -29.78%"
+      ],
+      [
+        "OOS 75/25 Benchmark",
+        "CAGR = 10.93% | Ann. Vol = 16.82% | Sharpe = 0.263 | Max Drawdown = -38.44% (Overlay cuts Max DD by 8.66%)"
+      ],
+      [
+        "Overfitting Controls (DSR & PBO)",
+        "Deflated Sharpe Ratio Probability (12 trials) = 0.4901 | Probability of Backtest Overfitting (PBO) = 0.18 | Annualised Turnover = 5.32x"
+      ],
+      [
+        "1-Year Regime MC (10,000 Paths)",
+        "Median Return = 17.1%, 5th Pct VaR = -7.9%, 95% CVaR = -13.6%, P(Negative 1Y) = 13.6%"
+      ]
+    ]
+  ],
+  [
+    "DELIVERABLES D3.5 & D3.6: REGIME LAB APP, MLOPS GOVERNANCE & IC WALKTHROUGH",
+    [
+      [
+        "Serving & Regime Lab UI",
+        "FastAPI contract endpoints GET /regime/score and GET /regime/health (src/api_server.py) + interactive Streamlit Regime Lab simulation platform (app/dashboard.py)."
+      ],
+      [
+        "Drift & Online/Batch Reconciliation",
+        "Feature PSI (vol_21d) = 0.3195 (threshold < 0.25) | 30-Day Particle-Filter vs Batch Reconciliation Gap = 0.1270 (threshold < 0.15)."
+      ],
+      [
+        "Worked Single-Day Contract Walkthrough",
+        "Date: 2026-11-26 | Dominant Regime: Risk-On | Probs: {'Risk-Off': 0.0053, 'Post-Shock': 0.0074, 'Transitional': 0.0239, 'Late-Cycle': 0.1623, 'Risk-On': 0.8012} | 90% Conformal Set: {Risk-On} | Meta-Confidence: 73.72/100 | Equity Weight: 95.8% | SEBI Risk-O-Meter: Moderate"
+      ],
+      [
+        "Historical Crisis Stress Attribution",
+        "2008 GFC: Overlay -3.5% (DD -15.9%) vs Bench -1.7% (DD -22.0%); 2013 Taper Tantrum: Overlay -2.7% (DD -11.4%) vs Bench -3.3% (DD -14.6%); 2018 ILFS Credit Shock: Overlay -3.2% (DD -11.3%) vs Bench -4.9% (DD -14.5%); 2020 COVID Crash Recovery: Overlay +15.0% (DD -28.8%) vs Bench +16.9% (DD -37.6%); 2024 Election Shock: Overlay +7.5% (DD -3.4%) vs Bench +8.1% (DD -5.9%)"
+      ]
+    ]
+  ]
+]
