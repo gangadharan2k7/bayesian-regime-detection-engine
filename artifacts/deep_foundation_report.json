@@ -1,22 +1,22 @@
 {
   "stacking_weights": {
     "Bayesian_HMM": 0.0,
-    "Bayesian_RSVAR": 0.6567,
-    "Particle_Filter": 0.093,
-    "MC_Dropout_BNN": 0.2503,
+    "Bayesian_RSVAR": 0.4727,
+    "Particle_Filter": 0.0656,
+    "MC_Dropout_BNN": 0.4617,
     "Chronos_Foundation": 0.0,
     "LagLlama_Foundation": 0.0
   },
   "oos_regime_alignment_accuracy": {
-    "Bayesian_HMM": 0.5848,
-    "Bayesian_RSVAR": 0.7813,
-    "Particle_Filter": 0.4569,
-    "MC_Dropout_BNN": 0.679,
-    "Chronos_Foundation": 0.511,
-    "LagLlama_Foundation": 0.5903,
-    "Stacked_6Model_Ensemble": 0.825
+    "Bayesian_HMM": 0.5507,
+    "Bayesian_RSVAR": 0.7663,
+    "Particle_Filter": 0.511,
+    "MC_Dropout_BNN": 0.7091,
+    "Chronos_Foundation": 0.4684,
+    "LagLlama_Foundation": 0.6008,
+    "Stacked_6Model_Ensemble": 0.821
   },
-  "mean_bnn_epistemic_uncertainty": 0.0464,
+  "mean_bnn_epistemic_uncertainty": 0.0466,
   "foundation_probing_check": {
     "chronos_embedding_dim": 32,
     "lagllama_embedding_dim": 32

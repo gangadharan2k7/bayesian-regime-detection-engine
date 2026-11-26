@@ -1,10 +1,10 @@
 {
   "snapshot_file": "data/indian_market_pit.csv",
-  "sha256": "49777aa185b540b3c917215c01016522af36f46e9f973f7e1bf04eea7b082b5f",
-  "rows": 4680,
+  "sha256": "8aebe9129a9d15e006d50c70c88957f36241b5fea5bb0622b0d027d987492464",
+  "rows": 4682,
   "start_date": "2007-09-24",
-  "end_date": "2026-11-23",
-  "generated_at": "2026-11-26T07:16:23.435935",
+  "end_date": "2026-11-26",
+  "generated_at": "2026-11-26T13:01:06.049306",
   "release_lags": {
     "FII_Equity": 1,
     "DII_Equity": 1,

@@ -25,13 +25,13 @@
     "2026-01-14"
   ],
   "pelt_count": 23,
-  "mean_pf_ess": 659.5470954830154,
-  "mean_wasserstein_pf_rsvar": 1.117599159797211,
+  "mean_pf_ess": 659.592255115473,
+  "mean_wasserstein_pf_rsvar": 1.0895643971397124,
   "regime_distribution_pct": {
-    "Late-Cycle": 41.05,
-    "Risk-On": 40.93,
-    "Transitional": 12.31,
-    "Risk-Off": 3.73,
-    "Post-Shock": 1.99
+    "Risk-On": 45.57,
+    "Late-Cycle": 35.57,
+    "Transitional": 8.37,
+    "Risk-Off": 7.9,
+    "Post-Shock": 2.6
   }
 }

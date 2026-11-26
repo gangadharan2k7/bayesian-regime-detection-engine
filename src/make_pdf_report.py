@@ -42,7 +42,7 @@ class ReportPDF(FPDF):
         self.set_text_color(20, 20, 20)
         self.cell(62, 5.5, f"- {label}:")
         self.set_font("Helvetica", "", 10)
-        self.multi_cell(0, 5.5, str(val))
+        self.multi_cell(self.epw - (self.get_x() - self.l_margin), 5.5, str(val))
 
 pdf = ReportPDF()
 pdf.set_auto_page_break(auto=True, margin=15)
